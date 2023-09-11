@@ -1,10 +1,11 @@
 <script setup>
 import * as echarts from "echarts";
-import { ref, watch, onMounted } from "vue";
+import { shallowRef, watch, onMounted } from "vue";
 import "echarts/extension/bmap/bmap";
 import data from "./data";
 
-const chartRef = ref(null);
+// https://echarts.apache.org/zh/faq.html#others
+const chartRef = shallowRef(null);
 
 const renderChart = async () => {
   const chart = echarts.init(chartRef.value);
@@ -141,12 +142,16 @@ const renderChart = async () => {
   chart.setOption(option);
 };
 
-watch(chartRef, (newVal, oldVal) => {
-  if (newVal && newVal.clientHeight > 0) {
-    setTimeout(() => {
-      renderChart();
-    }, 0);
-  }
+// watch(chartRef, (newVal, oldVal) => {
+//   if (newVal && newVal.clientHeight > 0) {
+//     setTimeout(() => {
+//       renderChart();
+//     }, 0);
+//   }
+// });
+
+onMounted(() => {
+  renderChart();
 });
 </script>
 
