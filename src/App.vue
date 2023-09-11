@@ -1,5 +1,9 @@
-<script setup></script>
+<script setup>
+import Map from "./components/Map.vue";
+</script>
 
-<template></template>
+<template>
+  <Map />
+</template>
 
 <style scoped></style>
